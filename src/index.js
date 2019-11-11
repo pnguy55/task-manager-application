@@ -1,6 +1,5 @@
 // testing file that makes all this code basically unnecessary since app.js is a dupe
 // all that is left is calling app.js, the port, and the listener
-const path = require('path')
 const app = require('./app')
 
 // const express = require('express')
@@ -52,9 +51,7 @@ const port = process.env.PORT
 // app.use(userRouter)
 // app.use(taskRouter)
 
-app.get('', (req,res) => {
-    res.sendFile(path.join(__dirname, '/public/index.html'))
-})
+
 
 app.listen(port, () => {
     console.log('Server is up on port ' + port)
