@@ -7,6 +7,8 @@ require('./db/mongoose')
 // Routes
 const userRouter = require('./routers/user')
 const taskRouter = require('./routers/task')
+
+// dependencies
 const path = require('path')
 const app = express()
 
@@ -20,5 +22,6 @@ app.get('/', (req,res) => {
 
 app.use(userRouter)
 app.use(taskRouter)
+
 
 module.exports = app
