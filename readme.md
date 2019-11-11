@@ -30,7 +30,7 @@ download/start postman
 
 make mongodb-data folder near mongodb folder in user directory
 
-start database
+#to start database
 open terminal
 /Users/PhiNguyen/mongodb/bin/mongod.exe --dbpath=/Users/PhiNguyen/mongodb-data      
 
@@ -115,10 +115,17 @@ heroku config:unset key=value
 to list key value pairs use 
 heroku config
 
-IMPORTANT!!!! URLS MUST BE ENCLOSED IN QUOTES
+#IMPORTANT!!!! URLS MUST BE ENCLOSED IN QUOTES
 
 then
 git push heroku master
 
 then in postman set production value to url without trailing slash
 https://phi-task-manager.herokuapp.com/
+
+#add testing
+npm i jest --save-dev
+npm i supertest --save-dev
+add an app.js that is imported into index for for test functionality
+once package.json is set up all you need to watch for test is
+npm test
