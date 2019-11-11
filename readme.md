@@ -103,4 +103,22 @@ user: codephony
 pass: WGkDfbDpTTJpPo9v
 
 Use mongo compass with this in clipboard
-mongodb+srv://codephony:<password>@cluster0-shz1a.mongodb.net/test
+REMEMBER THE PASSWORD MUST BE MANUALLY INPUT
+mongodb+srv://codephony:WGkDfbDpTTJpPo9v@cluster0-shz1a.mongodb.net/task-manager-api?retryWrites=true
+
+use the following commands to set up a heroku deployment
+1) heroku create phi-task-manager
+To set the key value pairs use
+2) heroku config:set key=value 
+To unset use
+heroku config:unset key=value
+to list key value pairs use 
+heroku config
+
+IMPORTANT!!!! URLS MUST BE ENCLOSED IN QUOTES
+
+then
+git push heroku master
+
+then in postman set production value to url without trailing slash
+https://phi-task-manager.herokuapp.com/
