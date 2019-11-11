@@ -51,6 +51,9 @@ const port = process.env.PORT
 // // Must register the router for use
 // app.use(userRouter)
 // app.use(taskRouter)
+app.get('', (req,res) => {
+    res.sendFile(path.join(__dirname + '/index.html'))
+})
 
 app.listen(port, () => {
     console.log('Server is up on port ' + port)
