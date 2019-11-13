@@ -1,0 +1,114 @@
+:root {
+    --background-color: #ffffff;
+    --main-color: #1631AB;
+    --lighter-shade: #1835B8;
+    --darker-shade: #0E1F6B;
+    --gray: rgba(0,0,0,.70);
+    --header-font: 'Roboto Slab', serif;
+    --body-font: 'Open Sans', sans-serif;
+}
+*{
+    margin: 0;
+}
+.hide{
+    display: none;
+}
+.show{
+    display: flex;
+}
+body {
+    background-color: var(--darker-shade);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: var(--main-color);
+    font-family: var(--body-font);
+    min-height: 100vh;
+    width: 100%;
+}
+h1, h2, h3, h4 {
+    font-family: var(--header-font);
+}
+.nav-bar{
+    display: flex;
+    width: 100%;
+    height: 8rem;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--background-color);
+}
+.nav-bar-logo-wrapper{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--background-color);
+}
+.nav-bar-logo-wrapper > h1{
+    padding: .5em 1em;
+}
+.nav-bar-logo-wrapper > .weather-logo{
+    width: 50px;
+    margin-left: 1rem;
+} 
+.nav-bar-link-wrapper {
+    display: flex;
+}
+.nav-bar-link-wrapper > a {
+    display: flex;
+    padding: .5em 1em;
+    flex: 1;
+    text-decoration: none;
+    background-color: var(--darker-shade);
+    color: var(--background-color);
+    font-family: var(--header-font);
+    font-weight: 900px;
+    border-radius: 0px 0px 4px 4px;
+}
+.nav-bar-link-wrapper > a{
+    border-right: 1px solid var(--background-color);
+}
+
+.nav-bar-link-wrapper > a:hover{
+    background-color: var(--main-color);
+    color: var(--background-color);
+    border-radius: 0px 0px 4px 4px;
+}
+
+.flex {
+    display: flex;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-items {
+    align-items: center;
+}
+
+.flex-start {
+    justify-content: flex-start;
+}
+form {
+    width: 80%;
+    flex-wrap: wrap;
+    color: var(--main-color);
+    background-color: var(--background-color);
+    height: 20em;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+}
+
+form > div {
+    width: 70%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+form > div > label {
+    margin-right: 1rem;
+}

@@ -1,0 +1,16 @@
+.nav-bar{
+    flex-direction: row;
+    height: 5rem;
+}
+.nav-bar-link-wrapper > a{
+    background-color: rgba(0,0,0,0);
+    height: 100%;
+    border-radius: 0px;
+}
+.nav-bar-link-wrapper > a{
+    border: none;
+}
+form {
+    width: 30%;
+    margin-top: 2rem;
+}
