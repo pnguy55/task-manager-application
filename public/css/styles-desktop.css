@@ -10,6 +10,10 @@
 .nav-bar-link-wrapper > a{
     border: none;
 }
+
+#app-wrapper {
+    width: 60%;
+}
 form {
     width: 30%;
     margin-top: 2rem;
