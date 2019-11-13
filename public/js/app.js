@@ -37,7 +37,7 @@ $(document).ready(function() {
                     xhr.setRequestHeader("Authorization", 'Bearer '+ login_res.token);
                 }
             }).done(function (response) {
-                $(body).append(response)
+                $('#login').html(response)
             }).fail(function (err)  {
                 //Error during request
             });
