@@ -22,6 +22,7 @@ $(document).ready(function() {
             },
             method: "POST",
             url: TASK_MANAGER_API + "/users/login",
+            dataType: 'jsonp',
             data: JSON.stringify({
                 "email": $('#login-email').val(),
                 "password": $('#login-password').val()
