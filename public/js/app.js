@@ -30,9 +30,7 @@ $(document).ready(function() {
         .done(function( login_res ) {
             $.ajax({
                 type: "GET", //GET, POST, PUT
-                url: '/users/me',  //the url to call
-                data: yourData,     //Data sent to server
-                contentType: contentType,           
+                url: '/users/me',  //the url to call      
                 beforeSend: function (xhr) {   //Include the bearer token in header
                     xhr.setRequestHeader("Authorization", 'Bearer '+ login_res.token);
                 }
