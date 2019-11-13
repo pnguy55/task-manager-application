@@ -23,10 +23,10 @@ $(document).ready(function() {
             method: "POST",
             url: TASK_MANAGER_API + "/users/login",
             dataType: 'json',
-            data: {
+            data: JSON.stringify({
                 "email": $('#login-email').val(),
                 "password": $('#login-password').val()
-            }
+            })
         })
         .done(function( login_res ) {
             alert( "Logged in " );
