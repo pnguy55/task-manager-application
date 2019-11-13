@@ -30,7 +30,7 @@ $(document).ready(function() {
             "email": $('#login-email').val(),
             "password": $('#password').val()
         },
-        contentType: application/json
+        contentType: 'application/json'
     })
     .done(function( login_res ) {
         alert( "Logged in " );
