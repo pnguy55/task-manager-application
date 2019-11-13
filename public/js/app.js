@@ -1,4 +1,4 @@
-const TASK_MANAGER_API = 'phi-task-manager.herokuapp.com'
+const TASK_MANAGER_API = 'https://phi-task-manager.herokuapp.com'
 //const TASK_MANAGER_API = 'localhost:3000'
 
 function togglePasswordView() {
@@ -22,7 +22,6 @@ $(document).ready(function() {
             },
             method: "POST",
             url: TASK_MANAGER_API + "/users/login",
-            dataType: 'json',
             data: JSON.stringify({
                 "email": $('#login-email').val(),
                 "password": $('#login-password').val()
