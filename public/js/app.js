@@ -28,7 +28,6 @@ $(document).ready(function() {
             })
         })
         .done(function( login_res ) {
-            alert( "Logged in " );
             $.ajax({
                 type: "GET", //GET, POST, PUT
                 url: '/users/me',  //the url to call
