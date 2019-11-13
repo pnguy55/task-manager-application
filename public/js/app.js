@@ -25,7 +25,7 @@ $(document).ready(function() {
             dataType: 'json',
             data: {
                 "email": $('#login-email').val(),
-                "password": $('#password').val()
+                "password": $('#login-password').val()
             }
         })
         .done(function( login_res ) {
