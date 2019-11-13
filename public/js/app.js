@@ -11,7 +11,7 @@ function togglePasswordView() {
 }
 
 $(document).ready(function() {
-    $('#log-in').submit(function(event){
+    $('#submit-button').click(function(event){
 
         event.preventDefault();
 
