@@ -11,18 +11,22 @@ function togglePasswordView() {
 }
 
 $(document).ready(function() {
-    $('log-in').submit(function(event){
+    $('#log-in').submit(function(event){
 
         event.preventDefault();
 
         $.ajax({
+            beforeSend: function(xhrObj){
+                xhrObj.setRequestHeader("Content-Type","application/json");
+                xhrObj.setRequestHeader("Accept","application/json");
+            },
             method: "POST",
             url: TASK_MANAGER_API + "/users/login",
             dataType: 'json',
-            data: JSON.stringify({
+            data: {
                 "email": $('#login-email').val(),
                 "password": $('#password').val()
-            })
+            }
         })
         .done(function( login_res ) {
             alert( "Logged in " );
