@@ -12,14 +12,17 @@ function togglePasswordView() {
 
 $(document).ready(function() {
     $('log-in').submit(function(event){
+
+        event.preventDefault();
+
         $.ajax({
             method: "POST",
             url: TASK_MANAGER_API + "/users/login",
-            data: {
+            dataType: 'json',
+            data: JSON.stringify({
                 "email": $('#login-email').val(),
                 "password": $('#password').val()
-            },
-            contentType: 'application/json'
+            })
         })
         .done(function( login_res ) {
             alert( "Logged in " );
