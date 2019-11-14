@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <link rel='stylesheet' href='./css/styles-default-mobile.css'>
+    <link rel='stylesheet' media="screen and (min-width: 900px)" href='./css/styles-desktop.css'>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab&display=swap" rel="stylesheet">
+
+</head>
+<body class='flex column align-items'>
+
+    <div class='nav-bar'>
+        <a class='nav-bar-logo-wrapper' href='/'>
+            <!-- <img class='weather-logo' src='/assets/weather-logo.png' /> -->
+            <h1>Task Manager</h1>
+        </a>
+        <div class='nav-bar-link-wrapper'>
+            <a class='nav-link flex' href='/profile'>Profile</a>
+            <a id='login-nav' class='nav-link flex' href='#'>Login</a>
+            <a id='logout-nav' class='nav-link flex' href='#'>Logout</a>
+        </div>
+    </div>
+
+    <div id='app-wrapper'>
+        
+        <div id='form-select-buttons' class='flex align-items justify-content'>
+            <div id='login-form'>Log-in</div>
+            <div id='signup-form'>Sign-up</div>
+        </div>
+        <div id='back-to-form-select' class='input-field hide'>BACK</div>
+        <form id='login' action='/' class='input-field hide column align-items'>
+            <div class='signup-field hide'>
+                <label>Name</label>
+                <input type='text' name='name' id='signup-name'>
+            </div> 
+            <div class='signup-field hide'>
+                <label>Age</label>
+                <input type='number' name='age' id='signup-age'>
+            </div>
+            <div class='input-field hide'>
+                <label>E-mail: </label>
+                <input type='text' name='e-mail' id='login-email'>
+            </div>
+            <div class='input-field hide'>
+                <label>Password: </label>
+                <input type='password' name='password' id='login-password'>
+            </div>
+            <div class='input-field hide align-items'>
+                <input type='checkbox' onclick='togglePasswordView()'> Show Password
+            </div>
+            <button id='login-button' class='hide'>Log-in</button>
+            <button id='signup-button' class='hide'>Sign-up</button>
+        </form>
+    </div>
+
+</body>
+<footer>
+    <script type='text/javascript' src="./js/app.js"></script>
+
+</footer>
+</html>

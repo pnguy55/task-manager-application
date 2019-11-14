@@ -56,7 +56,6 @@ h1, h2, h3, h4 {
     display: flex;
 }
 .nav-bar-link-wrapper > a {
-    display: flex;
     padding: .5em 1em;
     flex: 1;
     text-decoration: none;

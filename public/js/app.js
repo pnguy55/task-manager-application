@@ -1,5 +1,5 @@
-const TASK_MANAGER_API = 'https://phi-task-manager.herokuapp.com'
-//const TASK_MANAGER_API = 'http://localhost:3000'
+//const TASK_MANAGER_API = 'https://phi-task-manager.herokuapp.com'
+const TASK_MANAGER_API = 'http://localhost:3000'
 
 function togglePasswordView() {
     var x = document.getElementById('login-password');
@@ -10,6 +10,23 @@ function togglePasswordView() {
     }
 }
 
+function getAuthCookie() {
+    var cn = "Authorization=";
+    var idx = document.cookie.indexOf(cn)
+ 
+    if (idx != -1) {
+        var end = document.cookie.indexOf(";", idx + 1);
+        if (end == -1) end = document.cookie.length;
+        return unescape(document.cookie.substring(idx + cn.length, end));
+    } else {
+        return "";
+   }
+ }
+
+function eraseCookie(name) {   
+    document.cookie = name+'=; Max-Age=-99999999;';  
+}
+
 $(document).ready(function() {
 
     $('#login-form').click(function(event){
@@ -17,12 +34,16 @@ $(document).ready(function() {
         $('#form-select-buttons').addClass('hide');
         $('.input-field').addClass('flex');
         $('.input-field').removeClass('hide');
+        $('.signup-field').removeClass('flex');
+        $('.signup-field').addClass('hide');
         $('#login-button').removeClass('hide');
         $('#signup-button').addClass('hide');
     });
     $('#signup-form').click(function(event){
         $('#form-select-buttons').removeClass('flex');
         $('#form-select-buttons').addClass('hide');
+        $('.signup-field').addClass('flex');
+        $('.signup-field').removeClass('hide');
         $('.input-field').addClass('flex');
         $('.input-field').removeClass('hide');
         $('#signup-button').removeClass('hide');
@@ -40,13 +61,34 @@ $(document).ready(function() {
         $('#login-button').addClass('hide');
     });
 
+    $('#logout-nav').click(function(event){
+        $.ajax({
+            type: "POST", //GET, POST, PUT
+            url: '/users/logout',  //the url to call   
+            contentType: "application/json; charset=utf-8", 
+            beforeSend: function (xhr) {   //Include the bearer token in header
+                // xhr.setRequestHeader("Authorization", 'Bearer '+ login_res.token);
+                xhr.setRequestHeader("Authorization", getAuthCookie());
+            }
+        }).done(function (response) {
+            eraseCookie();
+            window.location.replace(TASK_MANAGER_API + '/index.html');
+            // let profile_data = 
+        }).fail(function (err)  {
+            $('#app-wrapper').prepend('<h1 style="text-align: center; color: var(--background-color)">NO USER LOGGED IN</h1>');
+        });
+        
+    });
+
+    $('#login-nav').click(function(event){
+        eraseCookie();
+        window.location.replace(TASK_MANAGER_API + '/login.html');
+    });
+
     // login code - needs to add more to the body of the view profile after log-in
     $('#login-button').click(function(event){
-
+        eraseCookie();
         event.preventDefault();
-
-        
-
         $.ajax({
             beforeSend: function(xhrObj){
                 xhrObj.setRequestHeader("Content-Type","application/json");
@@ -62,24 +104,15 @@ $(document).ready(function() {
         })
         .done(function( login_res ) {
             // ONCE WE ARE LOGGED IN WE HAVE ACCESS TO THE JWT TOKEN on the login_res object
-            $.ajax({
-                type: "GET", //GET, POST, PUT
-                url: '/users/me',  //the url to call      
-                beforeSend: function (xhr) {   //Include the bearer token in header
-                    xhr.setRequestHeader("Authorization", 'Bearer '+ login_res.token);
-                }
-            }).done(function (response) {
-                let name = response.name
-
-                $('#login').html(name)
-                // let profile_data = 
-            }).fail(function (err)  {
-                //Error during request
-            });
+            var header = `Authorization= Bearer ${login_res.token}`;
+            document.cookie = header;
+            window.location.replace(TASK_MANAGER_API + '/profile');
         });
     })
     // SIGN UP CODE just change the AJAX POST to send the correct body
     $('#signup-button').click(function(event) {
+        eraseCookie();
+        event.preventDefault();
         $.ajax({
             beforeSend: function(xhrObj){
                 xhrObj.setRequestHeader("Content-Type","application/json");
@@ -89,21 +122,28 @@ $(document).ready(function() {
             url: TASK_MANAGER_API + "/users/create-user",
             dataType: 'json',
             data: JSON.stringify({
+                "name": $('#signup-name').val(),
                 "email": $('#login-email').val(),
+                "age": $('#signup-age').val(),
                 "password": $('#login-password').val()
             })
         })
         .done(function( login_res ) {
+            // ONCE WE ARE LOGGED IN WE HAVE ACCESS TO THE JWT TOKEN on the login_res object
+            var header = `Authorization= Bearer ${login_res.token}`;
+            document.cookie = header;
             $.ajax({
                 type: "GET", //GET, POST, PUT
-                url: '/users/me',  //the url to call      
+                url: '/users/me',  //the url to call   
+                contentType: "application/json; charset=utf-8", 
                 beforeSend: function (xhr) {   //Include the bearer token in header
-                    xhr.setRequestHeader("Authorization", 'Bearer '+ login_res.token);
+                    // xhr.setRequestHeader("Authorization", 'Bearer '+ login_res.token);
+                    xhr.setRequestHeader("Authorization", getAuthCookie());
                 }
             }).done(function (response) {
-                let name = response.name
-
-                $('#login').html(name)
+                var header = `Authorization= Bearer ${login_res.token}`;
+                document.cookie = header;
+                window.location.replace(TASK_MANAGER_API + '/profile');
                 // let profile_data = 
             }).fail(function (err)  {
                 //Error during request
