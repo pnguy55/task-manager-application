@@ -6,3 +6,5 @@ https://stackoverflow.com/questions/2455492/ajax-http-basic-auth-and-authenticat
 
 MAKE ERROR CASES for FOR AJAX CALLS
 ADD PROFILE PIC UPLOAD
+
+image upload is f'd fix it

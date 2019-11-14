@@ -75,7 +75,8 @@ $(document).ready(function() {
             window.location.replace(TASK_MANAGER_API + '/index.html');
             // let profile_data = 
         }).fail(function (err)  {
-            $('#app-wrapper').prepend('<h1 style="text-align: center; color: var(--background-color)">NO USER LOGGED IN</h1>');
+            $('#no-user').addClass('flex');
+            $('#no-user').removeClass('hide');
         });
         
     });

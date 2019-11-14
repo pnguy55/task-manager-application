@@ -25,25 +25,72 @@
     </div>
 
     <div id='app-wrapper'>
+        <h1 id ="no-user" class='hide' style="text-align: center; color: var(--background-color)">NO USER LOGGED IN</h1>
+        <div id='profile' class='hide'></div>
+        <div id='image-wrapper' class='hide'>
+            <div id='profile-image'><img src='https://via.placeholder.com/150'/></div>
+            <form id='image-upload-form' action='/'>
+                <input id='new-image' type="file" name="pic" accept="image/png, image/jpeg, image/jpg"></input>
+                <button id="image-upload-button">Upload</button>
+            </form>
+            <div id='change-profile'> Change Avatar </div>
+        </div>
         <script>
             $(document).ready(function() {
-                $.ajax({
-                    type: "GET", //GET, POST, PUT
-                    url: '/users/me',  //the url to call   
-                    contentType: "application/json; charset=utf-8", 
-                    beforeSend: function (xhr) {   //Include the bearer token in header
-                        // xhr.setRequestHeader("Authorization", 'Bearer '+ login_res.token);
-                        xhr.setRequestHeader("Authorization", getAuthCookie());
-                    }
-                }).done(function (response) {
-                    let name = response.name;
-                    $('#back-to-form-select').removeClass('flex');
-                    $('#back-to-form-select').addClass('hide');
-                    $('#app-wrapper').append(response.name);
-                    // let profile_data = 
-                }).fail(function (err)  {
-                    //Error during request
+                const get_profile = () => {
+                    $.ajax({
+                        type: "GET", //GET, POST, PUT
+                        url: '/users/me',  //the url to call   
+                        contentType: "application/json; charset=utf-8", 
+                        beforeSend: function (xhr) {   //Include the bearer token in header
+                            // xhr.setRequestHeader("Authorization", 'Bearer '+ login_res.token);
+                            xhr.setRequestHeader("Authorization", getAuthCookie());
+                        }
+                    }).done(function (response) {
+                            $('#profile').removeClass('hide');
+                            $('#profile').addClass('flex');
+                            $('#image-wrapper').removeClass('hide');
+                            $('#image-wrapper').addClass('flex');
+                            $('#profile').append(response.name);
+                            $('profile').append(response.avatar)
+                        // let profile_data = 
+                    }).fail(function (err)  {
+                        console.log('fail');
+                        $('#no-user').addClass('flex');
+                        $('#no-user').removeClass('hide');
+                    });
+                }
+
+                get_profile();
+
+                // IMAGE UPLOAD BUTTON START 
+                $('#image-upload-button').click(function(event){
+                    event.preventDefault();
+                    var fileInput = document.getElementById('#new-image');
+                    var file = fileInput.files[0];
+                    var formData = new FormData();
+                    formData.append('file', file);
+                    console.log(formData)
+                    $.ajax({
+                        type: "POST", //GET, POST, PUT
+                        url: '/users/me/avatar',  //the url to call   
+                        contentType: "multipart/form-data; boundary=--------------------------765201637728800896457929; charset=utf-8", 
+                        beforeSend: function (xhr) {   //Include the bearer token in header
+                            // xhr.setRequestHeader("Authorization", 'Bearer '+ login_res.token);
+                            xhr.setRequestHeader("Authorization", getAuthCookie());
+                        },
+                        data: formData
+                    }).done(function (response) {
+
+                        console.log('posted image, now display it');
+                        this.get_profile();
+                        // let profile_data = 
+                    }).fail(function (err)  {
+                        console.log('fail');
+                    });
                 });
+                // IMAGE UPLOAD BUTTON END
+
             });
         </script>
         
