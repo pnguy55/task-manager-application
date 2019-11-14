@@ -1,5 +1,5 @@
-//const TASK_MANAGER_API = 'https://phi-task-manager.herokuapp.com'
-const TASK_MANAGER_API = 'http://localhost:3000'
+const TASK_MANAGER_API = 'https://phi-task-manager.herokuapp.com'
+//const TASK_MANAGER_API = 'http://localhost:3000'
 
 function togglePasswordView() {
     var x = document.getElementById('login-password');
