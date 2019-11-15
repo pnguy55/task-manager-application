@@ -77,7 +77,6 @@ userSchema.methods.toJSON = function () {
     // No need for client to see this info
     delete userObject.password
     delete userObject.tokens
-    delete userObject.avatar
 
     return userObject
 }

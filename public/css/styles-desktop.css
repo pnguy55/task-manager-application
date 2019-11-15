@@ -18,3 +18,10 @@ form {
     width: 30%;
     margin-top: 2rem;
 }
+
+#profile {
+    width: 60%;
+}
+#image-upload-form {
+    flex-direction: row;
+}

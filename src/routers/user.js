@@ -21,7 +21,6 @@ const avatar_upload = multer({
         // cb(undefined, true)
         // // silently reject
         // cb(undefined, false)
-
         if (!file.originalname.match(/\.(jpg|jpeg|png|JPG|JPEG|PNG)$/)){
             return cb(new Error('Please upload a JPG, JPEG, or a PNG file'))
         }

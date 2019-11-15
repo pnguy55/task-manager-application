@@ -25,7 +25,10 @@
     </div>
 
     <div id='app-wrapper'>
-        <h1 id ="no-user" class='hide' style="text-align: center; color: var(--background-color)">NO USER LOGGED IN</h1>
+        <div id ="no-user" class='hide' style="text-align: center; color: var(--background-color)">
+            <h1>NO USER LOGGED IN</h1>
+            <div id='login-or-signup-please'>Login or Signup Please</div>
+        </div>
         <div id='form-select-buttons' class='flex align-items justify-content'>
             <div id='login-form'>Login</div>
             <div id='signup-form'>Sign-up</div>
@@ -33,11 +36,11 @@
         <div id='back-to-form-select' class='input-field hide'>BACK</div>
         <form id='login' action='/' class='input-field hide column align-items'>
             <div class='signup-field hide'>
-                <label>Name</label>
+                <label>Name:</label>
                 <input type='text' name='name' id='signup-name'>
             </div> 
             <div class='signup-field hide'>
-                <label>Age</label>
+                <label>Age:</label>
                 <input type='number' name='age' id='signup-age'>
             </div>
             <div class='input-field hide'>
@@ -48,7 +51,7 @@
                 <label>Password: </label>
                 <input type='password' name='password' id='login-password'>
             </div>
-            <div class='input-field hide align-items'>
+            <div id='hide-password' class='input-field hide align-items'>
                 <input type='checkbox' onclick='togglePasswordView()'> Show Password
             </div>
             <button id='login-button' class='hide'>Log-in</button>

@@ -83,7 +83,7 @@ $(document).ready(function() {
 
     $('#login-nav').click(function(event){
         eraseCookie();
-        window.location.replace(TASK_MANAGER_API + '/login.html');
+        window.location.replace(TASK_MANAGER_API + '/login');
     });
 
     // login code - needs to add more to the body of the view profile after log-in
